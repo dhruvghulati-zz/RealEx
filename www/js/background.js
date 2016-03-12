@@ -6,7 +6,7 @@ document.addEventListener("deviceready", function () {
     // The plug-in has to create a notification while in background - like a download progress bar.
     cordova.plugins.backgroundMode.setDefaults({
         title: 'TheTitleOfYourProcess',
-        text: 'Executing background tasks.',
+        text: 'A very exciting artwork to invest in',
         //resume: false
     });
 
@@ -22,7 +22,7 @@ document.addEventListener("deviceready", function () {
         setInterval(function () {
 
             cordova.plugins.backgroundMode.configure({
-                title: 'This is a push notification'
+                title: 'Invest in this artwork!! :)'
             })
         }, 5000);
     }
