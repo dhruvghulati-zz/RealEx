@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['firebase', 'starter.services', 'ngCordova'])
+angular.module('starter.controllers', ['firebase', 'starter.services', 'ngCordova', 'veridu-angularjs-sdk'])
 
     .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
 
@@ -40,6 +40,7 @@ angular.module('starter.controllers', ['firebase', 'starter.services', 'ngCordov
             }, 1000);
         };
     })
+
 
     .controller('NotificationController', function ($scope, $cordovaLocalNotification, $ionicPlatform) {
         $ionicPlatform.ready(function () {
@@ -229,6 +230,31 @@ angular.module('starter.controllers', ['firebase', 'starter.services', 'ngCordov
     .controller('AboutCtrl', function ($scope, $stateParams) {
 
     });
+
+// On a controller
+AppCtrl.$inject = ['Veridu'];
+function AppCtrl(Veridu) {
+    var vm = this;
+    vm.getProfile = getProfile;
+    vm.login = login;
+
+    // fetches user profile
+    function getProfile() {
+        Veridu.API.fetch('GET', 'profile/' + Veridu.cfg.user).then(
+            function success(response) {
+                vm.profile = response.data;
+            },
+            function error() {
+                // error handling
+            }
+        );
+    }
+
+    // Facebook SSO
+    function login() {
+        return Veridu.SSO.login('facebook');
+    }
+}
 
 //.controller('CreditCtrl', function ($scope) {
 //

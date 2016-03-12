@@ -11,6 +11,7 @@
   "dependencies": {
     "angular-material": "~1.0.6",
     "ionic": "driftyco/ionic-bower#1.2.4",
-    "angularfire": "~1.1.4"
+    "angularfire": "~1.1.4",
+    "veridu-angularjs-sdk": "*"
   }
 }

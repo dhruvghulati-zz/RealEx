@@ -1,82 +1,111 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Basic Validation Example</title>
-    <script src="rxp-js.js"></script> <!-- Available at https://github.com/realexpayments -->
-    <!-- Basic form styling given as an example -->
-    <style type="text/css">
-        label {
-            display: block;
-            font-size: 12px;
-            font-family: arial;
-        }
+<ion-view view-title="Realex">
+    <ion-content>
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Basic Validation Example</title>
+            <script src="jquery-1.11.3.min.js"></script>
+            <!--<script src="rxp-js.js"></script> &lt;!&ndash; Available at https://github.com/realexpayments &ndash;&gt;-->
+            <!-- Basic form styling given as an example -->
+            <style type="text/css">
+                label {
+                    display: block;
+                    font-size: 12px;
+                    font-family: arial;
+                }
 
-        input {
-            width: 200px;
-        }
+                input {
+                    width: 200px;
+                }
 
-        input.small {
-            width: 50px;
-        }
+                input.small {
+                    width: 50px;
+                }
 
-        .twoColumn {
-            float: left;
-            margin: 0 30px 20px 0;
-        }
+                .twoColumn {
+                    float: left;
+                    margin: 0 30px 20px 0;
+                }
 
-        .clearAll {
-            clear: both;
-        }
-    </style>
-</head>
-<body>
-<!-- Basic HTML form given as an example -->
-<form name="myForm" method="POST" autocomplete="off" action="https://serverSdkEndpoint">
-    <p>
-        <label for="cardNumber">Card Number</label>
-        <input type="text" id="cardNumber" name="card-number"/>
-    </p>
-    <p>
-        <label for="cardholderName">Cardholder Name</label>
-        <input type="text" id="cardholderName" name="cardholder-name"/>
-    </p>
-    <p class="twoColumn">
-        <label>Expiry Date</label>
-        <input type="text" id="expiryDateMM" name="expiry-date-mm" aria-label="expiry date month" placeholder="MM"
-               class="small"/>
-        <input type="text" id="expiryDateYY" name="expiry-date-yy" aria-label="expiry date year" placeholder="YY"
-               class="small"/>
-    </p>
-    <p class="twoColumn">
-        <label for="cvn">Security Code</label>
-        <input type="text" id="cvn" name="cvn" class="small"/>
-    </p>
-    <p class="clearAll">
-        <input value="Pay Now" type="submit" name="submit" onclick="validate();"/>
-    </p>
-</form>
-<script>
-    // Basic form validation using the Realex Payments JS SDK given as an example
-    function validate() {
-        var cardNumberCheck = RealexRemote.validateCardNumber(document.getElementById('cardNumber').value);
-        var cardHolderNameCheck = RealexRemote.validateCardHolderName(document.getElementById('cardholderName').value);
-        var expiryDate = document.getElementById('expiryDateMM').value.concat(document.getElementById('expiryDateYY').value);
-        var expiryDateFormatCheck = RealexRemote.validateExpiryDateFormat(expiryDate);
-        var expiryDatePastCheck = RealexRemote.validateExpiryDateNotInPast(expiryDate);
-        if (document.getElementById('cardNumber').value.charAt(0) == "3") {
-            cvnCheck = RealexRemote.validateAmexCvn(document.getElementById('cvn').value);
-        }
-        else {
-            cvnCheck = RealexRemote.validateCvn(document.getElementById('cvn').value);
-        }
-        if (cardNumberCheck == false || cardHolderNameCheck == false || expiryDateFormatCheck == false || expiryDatePastCheck == false || cvnCheck == false) {
-            // code here to inform the cardholder of an input error and prevent the form submitting
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-</script>
-</body>
-</html>
+                .clearAll {
+                    clear: both;
+                }
+            </style>
+
+            <script src="rxp-js.js"></script>
+
+        </head>
+        <body>
+        <!-- Basic HTML form given as an example -->
+
+
+        <!--<form name="myForm" method="POST" autocomplete="off" action="https://serverSdkEndpoint">-->
+        <!--<p>-->
+        <!--<label for="cardNumber">Card Number</label>-->
+        <!--<input type="text" id="cardNumber" name="card-number"/>-->
+        <!--</p>-->
+        <!--<p>-->
+        <!--<label for="cardholderName">Cardholder Name</label>-->
+        <!--<input type="text" id="cardholderName" name="cardholder-name"/>-->
+        <!--</p>-->
+        <!--<p class="twoColumn">-->
+        <!--<label>Expiry Date</label>-->
+        <!--<input type="text" id="expiryDateMM" name="expiry-date-mm" aria-label="expiry date month" placeholder="MM"-->
+        <!--class="small"/>-->
+        <!--<input type="text" id="expiryDateYY" name="expiry-date-yy" aria-label="expiry date year" placeholder="YY"-->
+        <!--class="small"/>-->
+        <!--</p>-->
+        <!--<p class="twoColumn">-->
+        <!--<label for="cvn">Security Code</label>-->
+        <!--<input type="text" id="cvn" name="cvn" class="small"/>-->
+        <!--</p>-->
+        <!--<p class="clearAll">-->
+        <!--<input value="Pay Now" type="submit" name="submit" onclick="validate();"/>-->
+        <!--</p>-->
+        <!--</form>-->
+        <!--<script>-->
+        <!--// Basic form validation using the Realex Payments JS SDK given as an example-->
+        <!--function validate() {-->
+        <!--var cardNumberCheck = RealexRemote.validateCardNumber(document.getElementById('cardNumber').value);-->
+        <!--var cardHolderNameCheck = RealexRemote.validateCardHolderName(document.getElementById('cardholderName').value);-->
+        <!--var expiryDate = document.getElementById('expiryDateMM').value.concat(document.getElementById('expiryDateYY').value);-->
+        <!--var expiryDateFormatCheck = RealexRemote.validateExpiryDateFormat(expiryDate);-->
+        <!--var expiryDatePastCheck = RealexRemote.validateExpiryDateNotInPast(expiryDate);-->
+        <!--if (document.getElementById('cardNumber').value.charAt(0) == "3") {-->
+        <!--cvnCheck = RealexRemote.validateAmexCvn(document.getElementById('cvn').value);-->
+        <!--}-->
+        <!--else {-->
+        <!--cvnCheck = RealexRemote.validateCvn(document.getElementById('cvn').value);-->
+        <!--}-->
+        <!--if (cardNumberCheck == false || cardHolderNameCheck == false || expiryDateFormatCheck == false || expiryDatePastCheck == false || cvnCheck == false) {-->
+        <!--// code here to inform the cardholder of an input error and prevent the form submitting-->
+        <!--return false;-->
+        <!--}-->
+        <!--else {-->
+        <!--return true;-->
+        <!--}-->
+        <!--}-->
+        <!--</script>-->
+
+
+        <script>
+            // get the HPP JSON from the server-side SDK
+            $(document).ready(function () {
+                $.getJSON("https://hpp.test.realexpayments.com/pay", function () {
+                    RealexHpp.init("payButtonId", "response.html",
+                            {
+                                addMerchantId: "realexsandbox",
+                                addAccount: "internet",
+                                addAmount: "1001",
+                                addCurrency: "EUR",
+                                addAutoSettleFlag: "1"
+
+                            }
+                    );
+                });
+            });
+        </script>
+        <button type="button" id="payButtonId">Checkout Now</button>
+        </body>
+    </ion-content>
+</ion-view>
