@@ -4,9 +4,11 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ngMaterial'])
+angular.module('starter', ['ionic', 'starter.controllers', 'ngMaterial', 'starter.services', 'firebase'])
+    .constant('FirebaseUrl', 'https://realex.firebaseio.com/')
+    .service('rootRef', ['FirebaseUrl', Firebase])
 
-    .run(function ($ionicPlatform) {
+    .run(function ($ionicPlatform, $rootScope, $firebaseAuth, $firebase, $window, $ionicLoading) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -19,6 +21,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMaterial'])
                 // org.apache.cordova.statusbar required
                 StatusBar.styleDefault();
             }
+
         });
     })
 
@@ -37,6 +40,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMaterial'])
                 views: {
                     'menuContent': {
                         templateUrl: 'templates/veriduLogin.html'
+                    }
+                }
+            })
+
+            .state('app.realex', {
+                url: '/realex',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/realex.html'
                     }
                 }
             })
@@ -64,6 +76,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMaterial'])
                     'menuContent': {
                         templateUrl: 'templates/playlists.html',
                         controller: 'PlaylistsCtrl'
+                    }
+                }
+            })
+
+            .state('app.fblogin', {
+                url: '/fblogin',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/fblogin.html',
+                        controller: 'LoginCtrl as ctrl'
+                    }
+                }
+            })
+
+            .state('app.creditcard', {
+                url: '/creditcard',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/creditcard.html',
+                        controller: 'CreditCtrl'
                     }
                 }
             })

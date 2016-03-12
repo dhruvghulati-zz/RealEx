@@ -102,4 +102,76 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
-});
+
+})
+
+.controller('LoginCtrl', function(Auth, $state) {
+
+  this.loginWithFacebook = function loginWithFacebook() {
+    Auth.$authWithOAuthPopup('facebook')
+            .then(function (authData) {
+                console.log(authData);
+                //console.log(authData.facebook.cachedUserProfile.first_name);
+                //console.log(authData.facebook.cachedUserProfile.gender);
+                //console.log(authData.facebook.cachedUserProfile.last_name);
+                //console.log(authData.facebook.cachedUserProfile.id);
+                //authData.facebook.profileImageURL;
+                //name = object.getString("name");
+                var ref = new Firebase("https://realex.firebaseio.com");
+                var usersRef = ref.child("users");
+                usersRef.push().set(
+                    {
+                        id: authData.facebook.profileImageURL,
+                        first_name: authData.facebook.cachedUserProfile.first_name,
+                        last_name: authData.facebook.cachedUserProfile.last_name
+                    }
+                );
+                $state.go('app.playlists');
+            });
+    };
+})
+
+.controller('PlaylistsCtrl', function ($scope) {
+    $scope.playlists = [
+        {title: 'Reggae', id: 1},
+        {title: 'Chill', id: 2},
+        {title: 'Dubstep', id: 3},
+        {title: 'Indie', id: 4},
+        {title: 'Rap', id: 5},
+        {title: 'Cowbell', id: 6}
+    ];
+})
+
+.controller('PlaylistCtrl', function ($scope, $stateParams) {
+
+})
+
+.controller('CreditCtrl', ['$scope', '$rootScope', '$firebaseAuth', '$window',
+    function ($scope) {
+        $scope.card = {
+            id: "",
+            number: "",
+            expiry: "",
+            cvv: ""
+        };
+
+        $scope.createCard = function () {
+            var id = this.card.id;
+            var number = this.card.number;
+            var expiry = this.card.expiry;
+            var cvv = this.card.cvv;
+
+            var ref = new Firebase("https://realex.firebaseio.com");
+            var cardRef = ref.child("cards");
+            cardRef.push().set(
+                {
+                    id: id,
+                    number: number,
+                    expiry: expiry,
+                    cvv: cvv
+                }
+            );
+            $state.go('app.playlists');
+
+        }
+    }]);

@@ -1,7 +1,7 @@
 /* Empty. Add your own CSS if you like */
 
 .item-complex .item-content, .item-radio .item-content {
-	padding: 10px;
+	padding: 10px !important;
 }
 
 .exhibit-card {
