@@ -1,0 +1,23 @@
+<ion-view view-title="Login">
+    <ion-content>
+        <div ng-controller="CreditCtrl">
+            <label class="item item-input">
+                <span class="input-label">Credit Card Number</span>
+                <input type="tel" ng-model="card.number">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Expiry Date</span>
+                <input type="month" ng-model="card.expiry">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">CVV Code</span>
+                <input type="tel" ng-model="card.cvv">
+            </label>
+            <label class="item item-input">
+                <button class="button button-positive" ng-click="createCard()">
+                    Submit Credit Card Details
+                </button>
+            </label>
+        </div>
+    </ion-content>
+</ion-view>
