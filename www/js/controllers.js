@@ -158,7 +158,7 @@ angular.module('starter.controllers', ['firebase', 'starter.services', 'ngCordov
                     name: 'Shells on a Sea of Green',
                     artist: 'Sam Smith',
                     price: '120.45',
-                    imagePath: '/img/shells.jpeg',
+                    imagePath: 'img/shells.jpeg',
                     description: 'This seminal work by new artist Sam Smith defines a generation of excess and decadance by famous artists like Van Gogh and Salvador Dali. Inspired by his mother\'s hair loss at a young age.'
                 },
                 {
@@ -166,7 +166,7 @@ angular.module('starter.controllers', ['firebase', 'starter.services', 'ngCordov
                     name: 'A plaintiff among stars',
                     artist: 'Sam Smith',
                     price: '865.95',
-                    imagePath: '/img/star.jpg',
+                    imagePath: 'img/star.jpg',
                     description: 'This is our favourite piece of art. If you don\'t invest, we will steal your first born.'
                 },
                 {
@@ -174,7 +174,7 @@ angular.module('starter.controllers', ['firebase', 'starter.services', 'ngCordov
                     name: 'Cat got your tongue',
                     artist: 'Jessica Bean Heinz',
                     price: '465.95',
-                    imagePath: '/img/cat.jpg',
+                    imagePath: 'img/cat.jpg',
                     description: 'She is truly a wonder to behold, all her work is magnificent.'
                 }
             ];
