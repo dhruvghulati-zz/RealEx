@@ -52,5 +52,54 @@ angular.module('starter.controllers', [])
   ];
 })
 
+.factory('ExhibitFactory', function($http) {
+
+  function get(cb, id) {
+
+    var arr = [ // TODO Image, Amount Sold
+      { id: 1, name: 'Shells on a Sea of Green', artist: 'Sam Smith', price: '120.45', imagePath: '/img/shells.jpeg', description: 'This seminal work by new artist Sam Smith defines a generation of excess and decadance by famous artists like Van Gogh and Salvador Dali. Inspired by his mother\'s hair loss at a young age.' },
+      { id: 2, name: 'A plaintiff among stars', artist: 'Sam Smith', price: '865.95', imagePath: '/img/star.jpg' },
+      { id: 3, name: 'Cat got your tongue', artist: 'Jessica Bean Heinz', price: '465.95', imagePath: '/img/cat.jpg' }
+    ];
+
+    if (id !== undefined) {
+      var g = arr.filter(function(e) { return e.id == id });
+      arr = g;
+    }
+
+    // TODO This would return a real API response of users. Would be async, so need to .then(cb)
+    cb(arr);
+  }
+
+  return {
+    get: get
+  };
+
+})
+
+.controller('ExhibitListCtrl', function($scope, ExhibitFactory) {
+
+  ExhibitFactory.get(function(response) {
+    $scope.exhibits = response;
+    // TODO Any UI parameters we need to add?
+  });
+
+  $scope.love = function(exhibit) {
+    exhibit.love = !exhibit.love || true;
+  }
+
+})
+
+.controller('ExhibitCtrl', function($scope, ExhibitFactory, $stateParams) {
+
+  ExhibitFactory.get(function(response) {
+    $scope.exhibit = response[0];
+    // TODO Any UI parameters we need to add?
+  }, $stateParams.exhibitId);
+  console.log($scope.exhibit);
+  // ExhibitFactory.get(id)
+  // $scope.exhibit = ExhibitFactory
+})
+
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 });

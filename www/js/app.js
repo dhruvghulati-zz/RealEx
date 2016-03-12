@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+angular.module('starter', ['ionic', 'starter.controllers', 'ngMaterial'])
 
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
@@ -76,7 +76,10 @@ angular.module('starter', ['ionic', 'starter.controllers'])
                         controller: 'PlaylistCtrl'
                     }
                 }
-            });
+            })
+            .state('app.exhibits', { url: '/exhibits', views: { menuContent: { templateUrl: 'templates/exhibits.html', controller: 'ExhibitListCtrl' } }})
+            .state('app.exhibit', { url: '/exhibits/:exhibitId', views: { menuContent: {templateUrl: 'templates/exhibit.html', controller: 'ExhibitCtrl'}}})
+
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/app/playlists');
+        $urlRouterProvider.otherwise('/app/exhibits');
     });
