@@ -57,9 +57,9 @@ angular.module('starter.controllers', [])
   function get(cb, id) {
 
     var arr = [ // TODO Image, Amount Sold
-      { id: 1, name: 'Shells on a Sea of Green', artist: 'Sam Smith', price: '120.45', imagePath: '/img/shells.jpeg', description: 'This seminal work by new artist Sam Smith defines a generation of excess and decadance by famous artists like Van Gogh and Salvador Dali. Inspired by his mother\'s hair loss at a young age.' },
-      { id: 2, name: 'A plaintiff among stars', artist: 'Sam Smith', price: '865.95', imagePath: '/img/star.jpg', description: 'This is our favourite piece of art. If you don\'t invest, we will steal your first born.' },
-      { id: 3, name: 'Cat got your tongue', artist: 'Jessica Bean Heinz', price: '465.95', imagePath: '/img/cat.jpg', description: 'She is truly a wonder to behold, all her work is magnificent.' }
+      { id: 1, name: 'Shells on a Sea of Green', artist: 'Sam Smith', maj: 1718, min: 64714, price: '120.45', imagePath: 'img/shells.jpeg', description: 'This seminal work by new artist Sam Smith defines a generation of excess and decadance by famous artists like Van Gogh and Salvador Dali. Inspired by his mother\'s hair loss at a young age.' },
+      { id: 2, name: 'A plaintiff among stars', artist: 'Sam Smith', price: '865.95', imagePath: 'img/star.jpg', description: 'This is our favourite piece of art. If you don\'t invest, we will steal your first born.' },
+      { id: 3, name: 'Cat got your tongue', artist: 'Jessica Bean Heinz', price: '465.95', imagePath: 'img/cat.jpg', description: 'She is truly a wonder to behold, all her work is magnificent.' }
     ];
 
     if (id !== undefined) {
@@ -146,7 +146,11 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('AboutCtrl', function ($scope, $stateParams) {
+.controller('AboutCtrl', function ($scope, $stateParams, $rootScope) {
+
+  $scope.bluetooth = $rootScope.bluetooth;
+  $scope.events = $rootScope.events;
+  $scope.stats = $rootScope.stats;
 
 })
 
