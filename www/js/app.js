@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ngMaterial','veridu-angularjs-sdk','ngCordova','LocalStorageModule', 'starter.services', 'firebase'])
+angular.module('starter', ['ionic', 'starter.controllers', 'ngMaterial','veridu.angularjs.sdk','ngCordova','LocalStorageModule', 'starter.services', 'firebase'])
     .constant('FirebaseUrl', 'https://realex.firebaseio.com/')
     .service('rootRef', ['FirebaseUrl', Firebase])
 
@@ -29,11 +29,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMaterial','veridu-
 
     .config(function ($stateProvider, $urlRouterProvider, VeriduProvider) {
 
-        VeriduProvider.client = 'YOUR_CLIENT_ID';
+        VeriduProvider.client = 'demo';
+        VeriduProvider.API_VERSION = 'rafael';
 
         $stateProvider.state('app', {url: '/app', abstract: true, templateUrl: 'templates/menu.html', controller: 'AppCtrl'})
 
-            .state('app.login', {url: '/login', views: {'menuContent': {templateUrl: 'templates/login.html',controller: 'AppCtrl'}}})
+            .state('app.veriduLogin', {url: '/veriduLogin', views: {'menuContent': {templateUrl: 'templates/veriduLogin.html',controller: 'AppCtrl'}}})
 
             .state('app.response', {url: '/response', views: {'menuContent': {templateUrl: 'templates/response.html'}}})
 

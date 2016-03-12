@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['firebase', 'starter.services', 'ngCordova', 'veridu-angularjs-sdk'])
+angular.module('starter.controllers', ['firebase', 'starter.services', 'ngCordova', 'veridu.angularjs.sdk'])
 
     .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
 
