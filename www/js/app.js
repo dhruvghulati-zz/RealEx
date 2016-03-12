@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ngMaterial', 'starter.services', 'firebase'])
+angular.module('starter', ['ionic', 'starter.controllers', 'ngMaterial','ngCordova','LocalStorageModule', 'starter.services', 'firebase'])
     .constant('FirebaseUrl', 'https://realex.firebaseio.com/')
     .service('rootRef', ['FirebaseUrl', Firebase])
 
@@ -25,74 +25,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMaterial', 'starte
         });
     })
 
+
+
     .config(function ($stateProvider, $urlRouterProvider) {
-        $stateProvider
+        $stateProvider.state('app', {url: '/app', abstract: true, templateUrl: 'templates/menu.html', controller: 'AppCtrl'})
 
-            .state('app', {
-                url: '/app',
-                abstract: true,
-                templateUrl: 'templates/menu.html',
-                controller: 'AppCtrl'
-            })
+            .state('app.login', {url: '/login', views: {'menuContent': {templateUrl: 'templates/veriduLogin.html'}}})
 
-            .state('app.login', {
-                url: '/login',
-                views: {
-                    'menuContent': {
-                        templateUrl: 'templates/veriduLogin.html'
-                    }
-                }
-            })
+            .state('app.realex', {url: '/realex', views: {'menuContent': {templateUrl: 'templates/realex.html'}}})
 
-            .state('app.realex', {
-                url: '/realex',
-                views: {
-                    'menuContent': {
-                        templateUrl: 'templates/realex.html'
-                    }
-                }
-            })
+            .state('app.profile', {url: '/profile/2', views: {'menuContent': {templateUrl: 'templates/profile.html', controller: 'ProfileCtrl'}}})
 
-            .state('app.profile', {
-                url: '/profile',
-                views: {
-                    'menuContent': {
-                        templateUrl: 'templates/profile.html',
-                        controller: 'ProfileCtrl as profileCtrl'
-                    }
-                },
-                resolve: {
-                    auth: function($state, Users, Auth){
-                        return Auth.$requireAuth().catch(function(){
-                            $state.go('home');
-                        });
-                    },
-                    profile: function(Users, Auth){
-                        return Auth.$requireAuth().then(function(auth){
-                            return Users.getProfile(auth.uid).$loaded();
-                        });
-                    }
-                }
-            })
-
-            .state('app.search', {
-                url: '/search',
-                views: {
-                    'menuContent': {
-                        templateUrl: 'templates/search.html'
-                    }
-                }
-            })
+            .state('app.search', {url: '/search', views: {'menuContent': {templateUrl: 'templates/search.html'}}})
             // .state('app.browse', { url: '/browse', views: { 'menuContent': { templateUrl: 'templates/browse.html' } } })
-            .state('app.playlists', {
-                url: '/playlists',
-                views: {
-                    'menuContent': {
-                        templateUrl: 'templates/playlists.html',
-                        controller: 'PlaylistsCtrl'
-                    }
-                }
-            })
+            .state('app.playlists', {url: '/playlists',views: {'menuContent': {templateUrl: 'templates/playlists.html', controller: 'PlaylistsCtrl'}}})
+
+            .state('app.popup', {url: '/popup', views: {'menuContent': {templateUrl: 'templates/popup.html', controller: 'NotificationController'}}})
 
             .state('app.fblogin', {
                 url: '/fblogin',

@@ -1,18 +1,12 @@
-<div class="page-wrapper">
-
-    <div class="page-header">
-        <h1>Edit Profile</h1>
-    </div>
-
-    <form ng-submit="profileCtrl.updateProfile()">
-        <p ng-hide="profileCtrl.profile.displayName">
-            You'll need a display name before you can start chatting.
-        </p>
-
-        <div class="input-group">
-            <input required type="text" class="form-control" placeholder="Display Name" ng-model="profileCtrl.profile.displayName">
+<ion-view view-title="Profile">
+    <ion-content class="has-header">
+        <div class="list card">
+            <div class="item">
+                <h2>{{artist.name}}</h2>
+            </div>
+            <div class="item item-body">
+                <img src="http://graph.facebook.com/{{artist.id}}/picture?width=270&height=270"/>
+            </div>
         </div>
-        <input type="submit" class="btn btn-default" value="Set Display Name">
-    </form>
-
-</div>
+    </ion-content>
+</ion-view>
