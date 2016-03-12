@@ -57,9 +57,11 @@ angular.module('starter.controllers', [])
   function get(cb, id) {
 
     var arr = [ // TODO Image, Amount Sold
-      { id: 1, name: 'Shells on a Sea of Green', artist: 'Sam Smith', maj: 1718, min: 64714, price: '120.45', imagePath: 'img/shells.jpeg', description: 'This seminal work by new artist Sam Smith defines a generation of excess and decadance by famous artists like Van Gogh and Salvador Dali. Inspired by his mother\'s hair loss at a young age.' },
-      { id: 2, name: 'A plaintiff among stars', artist: 'Sam Smith', price: '865.95', imagePath: 'img/star.jpg', description: 'This is our favourite piece of art. If you don\'t invest, we will steal your first born.' },
-      { id: 3, name: 'Cat got your tongue', artist: 'Jessica Bean Heinz', price: '465.95', imagePath: 'img/cat.jpg', description: 'She is truly a wonder to behold, all her work is magnificent.' }
+      { id: 5, name: 'Shells on a Sea of Green', artist: 'Sam Smith', maj: 1718, min: 64714, price: 120.45, imagePath: 'img/shells.jpeg', description: 'This seminal work by new artist Sam Smith defines a generation of excess and decadance by famous artists like Van Gogh and Salvador Dali. Inspired by his mother\'s hair loss at a young age.' },
+      { id: 4, name: 'A plaintiff among stars', artist: 'Sam Smith', price: 865.95, imagePath: 'img/star.jpg', description: 'This is our favourite piece of art. If you don\'t invest, we will steal your first born.' },
+      { id: 3, name: 'Cat got your tongue', artist: 'Jessica Bean Heinz', price: 465.95, imagePath: 'img/cat.jpg', description: 'She is truly a wonder to behold, all her work is magnificent.' },
+      { id: 1, name: 'Remnants of a Hacker', artist: 'Lex Lexington', maj: 1718, min: 64714, price: 550, imagePath: 'img/exhibit1.jpg', description: 'This seminal work by new artist Lex Lexington highlights the pain and drama of the hacker lifestyle. The blue tones in this piece symbolise the calm after the storm. I\'m surprised that no one\s mentioned yet that the reductive quality of the figurative-narrative line-space matrix endangers the devious simplicity of the exploration of montage elements. ' },
+      { id: 2, name: 'Untitled (burning the candle at both ends)', artist: 'Hillary Hills', maj: 14211, min: 42703, price: 750, imagePath: 'img/exhibit2.jpg', description: 'At first, this piece appears to be just a simple lamp, the icy exterior highlights something more sinister. As an advocate of the Big Mac Aesthetic, I feel that the aura of the figurative-narrative line-space matrix contextualize the distinctive formal juxtapositions.' }
     ];
 
     if (id !== undefined) {
