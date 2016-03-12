@@ -53,6 +53,28 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                 }
             })
 
+            .state('app.profile', {
+                url: '/profile',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/profile.html',
+                        controller: 'ProfileCtrl as profileCtrl'
+                    }
+                },
+                resolve: {
+                    auth: function($state, Users, Auth){
+                        return Auth.$requireAuth().catch(function(){
+                            $state.go('home');
+                        });
+                    },
+                    profile: function(Users, Auth){
+                        return Auth.$requireAuth().then(function(auth){
+                            return Users.getProfile(auth.uid).$loaded();
+                        });
+                    }
+                }
+            })
+
             .state('app.search', {
                 url: '/search',
                 views: {

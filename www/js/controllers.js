@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['firebase','starter.services'])
 
     .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
 
@@ -41,8 +41,24 @@ angular.module('starter.controllers', [])
         };
     })
 
+    .controller('ProfileCtrl', function($state, md5, auth, profile){
+        var profileCtrl = this;
+        profileCtrl.profile = profile;
+        profileCtrl.updateProfile = function(){
+            profileCtrl.profile.emailHash = md5.createHash(auth.password.email);
+            profileCtrl.profile.$save();
+        };
+    })
 
-    .controller('LoginCtrl', LoginCtrl)
+    .controller('LoginCtrl', LoginCtrl,function(){
+        $scope.token = token;
+        localStorage.setItem("token", $scope.token);
+        $scope.token = localStorage.getItem("token");
+        if(localStorage.getItem("token") !== null && localStorage.getItem("token") !== ""){
+            //go ahead and authenticate them without getting a new token.}
+        }
+        localStorage.setItem("token", "");
+    })
 
     .controller('PlaylistsCtrl', function ($scope) {
         $scope.playlists = [
@@ -59,14 +75,6 @@ angular.module('starter.controllers', [])
     })
 
     .controller('CreditCtrl', ['$scope', '$rootScope', '$firebaseAuth', '$window',
-        function ($scope) {
-            $scope.card = {
-                id: "",
-                number: "",
-                expiry: "",
-                cvv: ""
-            };
-
             $scope.createCard = function () {
                 var id = this.card.id;
                 var number = this.card.number;
@@ -74,41 +82,37 @@ angular.module('starter.controllers', [])
                 var cvv = this.card.cvv;
 
                 var ref = new Firebase("https://realex.firebaseio.com");
-                var cardRef = ref.child("cards");
-                cardRef.push().set(
+                var cardRef = ref.child("users");
+                cardRef.push(
                     {
-                        id: id,
                         number: number,
                         expiry: expiry,
                         cvv: cvv
                     }
                 );
-                $state.go('app.playlists');
-
+                $state.go('app.creditcard');
             }
-        }]);
+        ]);
 
 function LoginCtrl(Auth, $state) {
     this.loginWithFacebook = function loginWithFacebook() {
         Auth.$authWithOAuthPopup('facebook')
             .then(function (authData) {
                 console.log(authData);
-                //console.log(authData.facebook.cachedUserProfile.first_name);
-                //console.log(authData.facebook.cachedUserProfile.gender);
-                //console.log(authData.facebook.cachedUserProfile.last_name);
-                //console.log(authData.facebook.cachedUserProfile.id);
-                //authData.facebook.profileImageURL;
-                //name = object.getString("name");
                 var ref = new Firebase("https://realex.firebaseio.com");
                 var usersRef = ref.child("users");
-                usersRef.push().set(
+                //console.log(usersRef.key());
+                usersRef.key().set(authData.facebook.id);
+                console.log(usersRef.key());
+                usersRef.push([
                     {
-                        id: authData.facebook.profileImageURL,
+                        image: authData.facebook.profileImageURL,
                         first_name: authData.facebook.cachedUserProfile.first_name,
                         last_name: authData.facebook.cachedUserProfile.last_name
                     }
-                );
-                $state.go('app.playlists');
+                ]);
+
+                $state.go('app.creditcard');
             });
     };
 }
