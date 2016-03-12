@@ -1,1 +1,21 @@
 /* Empty. Add your own CSS if you like */
+
+.item-complex .item-content, .item-radio .item-content {
+	padding: 10px !important;
+}
+
+.exhibit-card {
+	max-height: 200px;
+}
+
+button.button-icon {
+	font-size: 30px;
+}
+
+button.ion-ios-heart {
+	color: crimson;
+}
+
+.md-headline {
+	font-weight: bold;
+}

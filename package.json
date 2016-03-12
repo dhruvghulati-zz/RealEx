@@ -1,13 +1,18 @@
 {
   "name": "ionic-project",
   "version": "1.1.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhruvghulati/RealEx.git"
+  },
   "description": "An Ionic project",
+  "license": "MIT",
   "dependencies": {
     "gulp": "^3.5.6",
-    "gulp-sass": "^2.0.4",
     "gulp-concat": "^2.2.0",
     "gulp-minify-css": "^0.3.0",
-    "gulp-rename": "^1.2.0"
+    "gulp-rename": "^1.2.0",
+    "gulp-sass": "^2.0.4"
   },
   "devDependencies": {
     "bower": "^1.3.3",
@@ -26,5 +31,14 @@
   ],
   "cordovaPlatforms": [
     "android"
-  ]
+  ],
+  "bugs": {
+    "url": "https://github.com/dhruvghulati/RealEx/issues"
+  },
+  "homepage": "https://github.com/dhruvghulati/RealEx#readme",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "author": "Humans"
 }

@@ -1,0 +1,31 @@
+<ion-view view-title="{{exhibit.name}}">
+  <ion-content>
+
+	  <md-card>
+        <img ng-if="exhibit.imagePath" ng-src="{{exhibit.imagePath}}" class="md-card-image" alt="Washed Out">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{exhibit.name}}</span>
+            <a href="#/app/artists/{{getArtistId(exhibit.artist)}}"><span class="md-subhead">{{exhibit.artist}}</span></a>
+          </md-card-title-text>
+        </md-card-title>
+        <!-- <md-card-actions layout="row" layout-align="end center"> -->
+          <!-- <md-card-icon-actions> -->
+          	
+            <!-- <md-button class="md-icon-button button button-icon button-clear " aria-label="Favorite"><md-icon md-svg-icon="img/icons/favorite.svg"></md-icon></md-button> -->
+            <!-- <md-button class="md-icon-button" aria-label="Share"><md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon></md-button> -->
+          <!-- </md-card-icon-actions> -->
+          <!-- <md-button class="button button-icon button-clear {{exhibit.love ? 'ion-ios-heart' : 'ion-ios-heart-outline'}}" aria-label="I Love This!" ng-click="love(exhibit)"></md-button> -->
+          <!-- <md-button>Action 2</md-button> -->
+        <!-- </md-card-actions> -->
+        <md-card-content>
+          <p>{{exhibit.description}}</p>
+
+			<md-button class="md-raised md-primary">Buy A Share</md-button>
+
+        </md-card-content>
+      </md-card>
+
+
+  </ion-content>
+</ion-view>

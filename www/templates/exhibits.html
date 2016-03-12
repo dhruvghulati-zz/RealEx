@@ -1,0 +1,62 @@
+<ion-view view-title="Exhibits">
+  <ion-content>
+  	<md-progress-linear md-mode="indeterminate" ng-if="!exhibits.length"></md-progress-linear>
+
+	  <md-card href="#/app/about">
+        <img ng-if="exhibit.imagePath" ng-src="{{exhibit.imagePath}}" class="md-card-image exhibit-card" alt="Washed Out">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Welcome to the Impact Gallery!</span>
+            <!-- <span class="md-subhead"></span> -->
+          </md-card-title-text>
+        </md-card-title>
+        <!-- <md-card-actions layout="row" layout-align="end center"> -->
+          <!-- <md-card-icon-actions> -->
+          	
+            <!-- <md-button class="md-icon-button button button-icon button-clear " aria-label="Favorite"><md-icon md-svg-icon="img/icons/favorite.svg"></md-icon></md-button> -->
+            <!-- <md-button class="md-icon-button" aria-label="Share"><md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon></md-button> -->
+          <!-- </md-card-icon-actions> -->
+          <!-- <md-button class="button button-icon button-clear {{exhibit.love ? 'ion-ios-heart' : 'ion-ios-heart-outline'}}" aria-label="I Love This!" ng-click="love(exhibit)"></md-button> -->
+          <!-- <md-button>Action 2</md-button> -->
+        <!-- </md-card-actions> -->
+        <md-card-content>
+		  <p>We hope you enjoy some of the amazing works we're exhibiting!</p>
+          <!-- <p><md-button class="md-icon-button button button-icon button-clear {{exhibit.love ? 'ion-ios-heart' : 'ion-ios-heart-outline'}}" aria-label="I Love This!" ng-click="love(exhibit)"></md-button>{{exhibit.description}}</p> -->
+        </md-card-content>
+      </md-card>
+
+    <ion-list>
+      <ion-item ng-repeat="exhibit in exhibits" href="#/app/exhibits/{{exhibit.id}}">
+
+	  <md-card>
+        <img ng-if="exhibit.imagePath" ng-src="{{exhibit.imagePath}}" class="md-card-image exhibit-card" alt="Washed Out">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{exhibit.name}}</span>
+            <span class="md-subhead">{{exhibit.artist}}</span>
+          </md-card-title-text>
+        </md-card-title>
+        <!-- <md-card-actions layout="row" layout-align="end center"> -->
+          <!-- <md-card-icon-actions> -->
+          	
+            <!-- <md-button class="md-icon-button button button-icon button-clear " aria-label="Favorite"><md-icon md-svg-icon="img/icons/favorite.svg"></md-icon></md-button> -->
+            <!-- <md-button class="md-icon-button" aria-label="Share"><md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon></md-button> -->
+          <!-- </md-card-icon-actions> -->
+          <!-- <md-button class="button button-icon button-clear {{exhibit.love ? 'ion-ios-heart' : 'ion-ios-heart-outline'}}" aria-label="I Love This!" ng-click="love(exhibit)"></md-button> -->
+          <!-- <md-button>Action 2</md-button> -->
+        <!-- </md-card-actions> -->
+        <md-card-content>
+
+          <p><md-button class="md-icon-button button button-icon button-clear {{exhibit.love ? 'ion-ios-heart' : 'ion-ios-heart-outline'}}" aria-label="I Love This!" ng-click="love(exhibit)"></md-button>{{exhibit.description}}</p>
+        </md-card-content>
+      </md-card>	
+
+      </ion-item>
+    </ion-list>
+
+ <md-button md-no-ink class="md-primary">Primary (md-noink)</md-button>
+
+
+
+  </ion-content>
+</ion-view>
