@@ -61,15 +61,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMaterial', 'starte
                     }
                 }
             })
-
-            .state('app.browse', {
-                url: '/browse',
-                views: {
-                    'menuContent': {
-                        templateUrl: 'templates/browse.html'
-                    }
-                }
-            })
+            // .state('app.browse', { url: '/browse', views: { 'menuContent': { templateUrl: 'templates/browse.html' } } })
             .state('app.playlists', {
                 url: '/playlists',
                 views: {
@@ -111,6 +103,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMaterial', 'starte
             })
             .state('app.exhibits', { url: '/exhibits', views: { menuContent: { templateUrl: 'templates/exhibits.html', controller: 'ExhibitListCtrl' } }})
             .state('app.exhibit', { url: '/exhibits/:exhibitId', views: { menuContent: {templateUrl: 'templates/exhibit.html', controller: 'ExhibitCtrl'}}})
+            .state('app.about', { url: '/about', views: { menuContent: {templateUrl: 'templates/about.html', controller: 'AboutCtrl'}}})
 
         // if none of the above states are matched, use this as the fallback
         $urlRouterProvider.otherwise('/app/exhibits');
