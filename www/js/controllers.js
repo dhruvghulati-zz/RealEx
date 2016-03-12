@@ -1,6 +1,6 @@
 angular.module('starter.controllers', ['firebase', 'starter.services', 'ngCordova', 'veridu.angularjs.sdk'])
 
-    .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
+    .controller('AppCtrl', function ($scope, $ionicModal, $timeout, Veridu, $rootScope) {
 
         // With the new view caching in Ionic, Controllers are only called
         // when they are recreated or on app start, instead of every page change.
@@ -8,6 +8,36 @@ angular.module('starter.controllers', ['firebase', 'starter.services', 'ngCordov
         // listen for the $ionicView.enter event:
         //$scope.$on('$ionicView.enter', function(e) {
         //});
+
+        var saidHi = false;
+
+        $rootScope.$watch('user', function (user) {
+            if (user && !saidHi) {
+                alert('Hi ' + user.name.value);
+                saidHi = true;
+            }
+        }, true);
+
+        poll();
+        function poll() {
+            Veridu.API.fetch('GET', 'profile/' + Veridu.cfg.user)
+                .then(
+                    function data(response) {
+                        console.info(response.data);
+
+                        $rootScope.user = response.data.user;
+                        $timeout(function () {
+                            poll();
+                        }, 1000);
+                    },
+                    function error(response) {
+                        console.error(response);
+                        $timeout(function () {
+                            poll();
+                        }, 1000);
+                    }
+                );
+        }
 
         // Form data for the login modal
         $scope.loginData = {};
@@ -21,6 +51,8 @@ angular.module('starter.controllers', ['firebase', 'starter.services', 'ngCordov
 
         // Triggered in the login modal to close it
         $scope.closeLogin = function () {
+            $rootScope.loading = true;
+            Veridu.Widget.login('facebook');
             $scope.modal.hide();
         };
 
@@ -255,6 +287,7 @@ function AppCtrl(Veridu) {
         return Veridu.SSO.login('facebook');
     }
 }
+
 
 //.controller('CreditCtrl', function ($scope) {
 //
